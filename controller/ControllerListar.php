@@ -4,14 +4,13 @@ class listarController{
 
     private $lista;
 
-    public function __construct(){
+    public function __construct($filtro = null){
         $this->lista = new Banco();
-        $this->criarTabela();
-
+        $this->criarTabela($filtro);
     }
 
-    private function criarTabela(){
-        $row = $this->lista->getCliente();
+    private function criarTabela($filtro = null){
+        $row = $this->lista->getCliente($filtro);
         foreach ($row as $value) {
                 echo "<tr>";
                 echo "<th>".$value['nome'] ."</th>";

@@ -55,9 +55,15 @@ class Banco{
         }
     }
 
-    public function getCliente() {
+    public function getCliente($filtro = null) {
         $array = array();
-        $result = $this->mysqli->query("SELECT * FROM clientes");
+        if ($filtro) {
+            $campo = $filtro['filtroCampo'];
+            $valor = $filtro['filtroValor'];
+            $result = $this->mysqli->query("SELECT * FROM clientes WHERE `$campo` LIKE '%$valor%'");
+        } else {
+            $result = $this->mysqli->query("SELECT * FROM clientes");
+        }
         while($row = $result->fetch_array(MYSQLI_ASSOC)){
             $array[] = $row;
         }

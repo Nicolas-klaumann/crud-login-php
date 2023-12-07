@@ -11,6 +11,19 @@
 <body >
    <?php include("menu.php"); ?>
 <div id="table">
+    <form method="post" action="" id="form" name="form">
+        <select id="filtroCampo" name="filtroCampo">
+            <option value="nome">Nome</option>
+            <option value="sobrenome">Sobrenome</option>
+            <option value="dataNascimento">Data de Nascimento</option>
+            <option value="email">Email</option>
+            <option value="endereco">Endereço</option>
+        </select>
+        <input type="text" id="filtroValor" name="filtroValor" placeholder="Valor">
+        <button type="submit" class="btn btn-primary" style="background-color: #ff0048; border-color: #ff0048" id="btnPesquisar">Pesquisar</button>
+    </form>
+
+    
     <table class="table table-hover">
     <thead class="thead-dark">
             <tr>
@@ -23,7 +36,9 @@
             </tr>
         </thead>
         <tbody>
-            <?php new listarController();  ?>
+            <?php
+                new listarController($_POST);
+            ?>
 
         </tbody>
     </table>
